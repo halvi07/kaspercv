@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profesjonell CV</title>
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2b6cb0;
+            --accent-color: #4299e1;
+            --text-color: #2d3748;
+            --text-light: #718096;
+            --background: #f7fafc;
+            --white: #ffffff;
+            --border-radius: 12px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background: var(--background);
+            padding: 2rem;
+        }
+
+        .cv-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--gradient);
+            padding: 3rem 2rem;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            font-size: 0.95rem;
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(5px);
+            margin-top: 1.5rem;
+        }
+
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .contact-info span:hover {
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 2.5rem;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .experience-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .job-date {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .company-name {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .achievements-list {
+            list-style: none;
+            margin-left: 1rem;
+        }
+
+        .achievements-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .achievements-list li::before {
+            content: '•';
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .skill-category h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            padding: 0.5rem;
+            background: var(--background);
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateX(5px);
+            background: #edf2f7;
+        }
+
+        .education-item {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .education-header {
+            margin-bottom: 1rem;
+        }
+
+        .degree {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .institution {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .header {
+                padding: 2rem 1.5rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .main-content {
+                padding: 1.5rem;
+            }
+
+            .experience-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <header class="header">
+            <h1>[DITT NAVN]</h1>
+            <p>[Kort profesjonell beskrivelse / tittel]</p>
+            <div class="contact-info">
+                <span>📧 [din.epost@example.com]</span>
+                <span>📱 [+47 XXX XX XXX]</span>
+                <span>📍 [Sted, Norge]</span>
+                <span>💼 [linkedin.com/in/dittnavn]</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="section">
+                <h2>Sammendrag</h2>
+                <p>[Din profesjonelle oppsummering på 2-3 setninger. Fremhev din ekspertise, erfaring og karrieremål.]</p>
+            </section>
+
+            <section class="section">
+                <h2>Arbeidserfaring</h2>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <span class="job-title">[Stillingstittel]</span>
+                        <span class="job-date">[Måned År] - Nåværende</span>
+                    </div>
+                    <div class="company-name">[Bedriftsnavn]</div>
+                    <ul class="achievements-list">
+                        <li>Ledet et team på [X] personer i et prosjekt som økte [metrikk] med [Y]%</li>
+                        <li>Implementerte [spesifikk løsning] som resulterte i [målbart resultat]</li>
+                        <li>Utviklet og gjennomførte [strategi/initiativ] som førte til [positiv endring]</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <span class="job-title">[Tidligere Stillingstittel]</span>
+                        <span class="job-date">[Måned År] - [Måned År]</span>
+                    </div>
+                    <div class="company-name">[Tidligere Bedriftsnavn]</div>
+                    <ul class="achievements-list">
+                        <li>Oppnådde [spesifikt resultat] gjennom [handling/initiativ]</li>
+                        <li>Bidro til [prosjekt/initiativ] som førte til [målbar forbedring]</li>
+                        <li>Etablerte [prosess/system] som optimaliserte [område] med [X]%</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Utdanning</h2>
+                <div class="education-item">
+                    <div class="education-header">
+                        <div class="degree">[Grad] i [Fagfelt]</div>
+                        <div class="institution">[Utdanningsinstitusjon], [År] - [År]</div>
+                    </div>
+                    <ul class="achievements-list">
+                        <li>Hovedfag: [Spesialisering]</li>
+                        <li>Relevante kurs: [Viktige kurs og spesialiseringer]</li>
+                        <li>[Akademiske prestasjoner eller utmerkelser]</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Ferdigheter</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Faglige ferdigheter</h3>
+                        <div class="skill-item">[Faglig ferdighet 1]</div>
+                        <div class="skill-item">[Faglig ferdighet 2]</div>
+                        <div class="skill-item">[Faglig ferdighet 3]</div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Tekniske ferdigheter</h3>
+                        <div class="skill-item">[Teknisk ferdighet 1]</div>
+                        <div class="skill-item">[Teknisk ferdighet 2]</div>
+                        <div class="skill-item">[Teknisk ferdighet 3]</div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Språk</h3>
+                        <div class="skill-item">Norsk (Morsmål)</div>
+                        <div class="skill-item">Engelsk ([Nivå])</div>
+                        <div class="skill-item">[Andre språk]</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Sertifiseringer</h2>
+                <div class="experience-item">
+                    <ul class="achievements-list">
+                        <li>[Sertifisering 1] - [Utstedende organ], [År]</li>
+                        <li>[Sertifisering 2] - [Utstedende organ], [År]</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
